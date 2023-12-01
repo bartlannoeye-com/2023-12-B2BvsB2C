@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6ED356A7-8B47-4613-AD01-C85CF28491BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E2DA20AA-28D1-455C-BF50-C49A8F831633}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+		global.json = global.json
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{DB52D71A-4E24-46B6-9A5F-B16056972D23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{8834708A-A52C-4B8E-8BA8-F2F3D1BAEDCD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB52D71A-4E24-46B6-9A5F-B16056972D23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB52D71A-4E24-46B6-9A5F-B16056972D23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB52D71A-4E24-46B6-9A5F-B16056972D23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB52D71A-4E24-46B6-9A5F-B16056972D23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8834708A-A52C-4B8E-8BA8-F2F3D1BAEDCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8834708A-A52C-4B8E-8BA8-F2F3D1BAEDCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8834708A-A52C-4B8E-8BA8-F2F3D1BAEDCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8834708A-A52C-4B8E-8BA8-F2F3D1BAEDCD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DB52D71A-4E24-46B6-9A5F-B16056972D23} = {6ED356A7-8B47-4613-AD01-C85CF28491BD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3CB609D9-5D54-4C11-A371-DAAC8B74E430}
+	EndGlobalSection
+EndGlobal
