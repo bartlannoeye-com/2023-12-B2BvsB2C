@@ -1,5 +1,4 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Web;
 
 namespace CloudBrew.SaaS.Api.Infrastructure;
@@ -8,23 +7,19 @@ public static class AuthenticationExtensions
 {
     public static IServiceCollection AddAadRegistration(this IServiceCollection services, IConfiguration configuration)
     {
-        JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-        services.AddMicrosoftIdentityWebApiAuthentication(configuration);
-        services.Configure<OpenIdConnectOptions>(
-            OpenIdConnectDefaults.AuthenticationScheme, options =>
-            {
-                // The claim in the Jwt token where App roles are available.
-                options.TokenValidationParameters.RoleClaimType = "roles";
-                options.TokenValidationParameters.NameClaimType = "name";
-            });
-
-        // The following lines code instruct the asp.net core middleware to use the data in the "roles" claim in the Authorize attribute and User.IsInrole()
-        // See https://docs.microsoft.com/aspnet/core/security/authorization/roles?view=aspnetcore-2.2 for more info.
-        services.Configure<OpenIdConnectOptions>(OpenIdConnectDefaults.AuthenticationScheme, options =>
-        {
-            // The claim in the Jwt token where App roles are available.
-            options.TokenValidationParameters.RoleClaimType = "roles";
-        });
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddMicrosoftIdentityWebApi(jwtBearerOptions =>
+                {
+                    // disable so we don't get issuer null error
+                    jwtBearerOptions.TokenValidationParameters.ValidateIssuer = false; // or write own validation to check vs your customer list
+                    
+                    // make sure it comes from our app registration
+                    jwtBearerOptions.TokenValidationParameters.ValidAudience = $"api://{configuration.GetSection("AzureAd")["ClientId"]}";
+                }, identityOptions =>
+                {
+                    configuration.Bind("AzureAd", identityOptions);
+                }
+            );
 
         services.AddCors(options =>
         {
